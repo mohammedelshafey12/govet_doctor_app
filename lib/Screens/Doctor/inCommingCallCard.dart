@@ -46,7 +46,7 @@ final String imgUrl;
               // Avatar Image
               CircleAvatar(
                 radius: 25,
-                backgroundImage: AssetImage(imgUrl == null ? Constants.),
+                backgroundImage: AssetImage(imgUrl),
               ),
               SizedBox(
                 width: width * 0.05,
