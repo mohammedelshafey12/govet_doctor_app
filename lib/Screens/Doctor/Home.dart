@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:govet_doctor_app/Screens/Doctor/VideoCall.dart';
 import 'package:govet_doctor_app/constants.dart';
-import 'Chats.dart';
+import 'Reservations.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,7 +12,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedItemPosition = 1;
   List<Widget> widgets = [
-    VideoCallScreen(), ChatsScreen()];
+    VideoCallScreen(), Reservations()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
         title: Text(
           _selectedItemPosition == 0
               ? "Video Call"
-              : "Chats",
+              : "Reservations",
         ),
         centerTitle: true,
         leading: Builder(
@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
         onTap: (index) => setState(() => _selectedItemPosition = index),
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.call), label: 'Video Calls'),
-          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Chats'),
+          BottomNavigationBarItem(icon: Icon(Icons.book_rounded), label: 'Reservations'),
         ],
       ),
       body: widgets[_selectedItemPosition],
