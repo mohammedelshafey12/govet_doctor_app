@@ -40,6 +40,7 @@ class Constants {
   /// constants images
   static const String splash_logo = 'images/splash_logo.png';
   static const String doctorwithdog = 'images/doctorwithdog.png';
+  static const String pawprintSolid = 'images/pawprintSolid.png';
 }
 
 NavigationR(BuildContext context, Widget widget) {

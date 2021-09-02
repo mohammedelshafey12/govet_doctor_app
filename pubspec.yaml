@@ -24,6 +24,9 @@ dependencies:
   firebase_storage: ^8.0.4
   firebase_auth: ^1.1.1
 
+  #bottom navigation bar
+  flutter_snake_navigationbar: ^0.5.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

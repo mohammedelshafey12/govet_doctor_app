@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:govet_doctor_app/Screens/VideoCall.dart';
-
 import '../constants.dart';
+import 'Doctor/Home.dart';
 
 class DoctorIntro extends StatelessWidget {
   const DoctorIntro({Key? key}) : super(key: key);
@@ -35,7 +34,7 @@ class DoctorIntro extends StatelessWidget {
                 Text('Let\'s get to work,',style: TextStyle(fontSize:  width * 0.07,color: Constants.primary_yellow_color,fontFamily: 'custom_font'),),
                 InkWell(
                   onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VideoCallScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Home()));
                   },
                   child: Container(
                     decoration: BoxDecoration(
