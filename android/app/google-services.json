@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "409980239074",
+    "project_id": "govet-14814",
+    "storage_bucket": "govet-14814.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409980239074:android:0ed27f4f79ad91d7f072bb",
+        "android_client_info": {
+          "package_name": "com.technospace.govet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409980239074-6l9quc32e411nh1r9kvt2n435h2ohu1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe1O8oOty6CumncZrZ5n7xtlqYH2XWiUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409980239074-6l9quc32e411nh1r9kvt2n435h2ohu1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409980239074:android:f6c7258fa4fac643f072bb",
+        "android_client_info": {
+          "package_name": "com.technospace.govet_doctor_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409980239074-6l9quc32e411nh1r9kvt2n435h2ohu1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe1O8oOty6CumncZrZ5n7xtlqYH2XWiUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409980239074-6l9quc32e411nh1r9kvt2n435h2ohu1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
