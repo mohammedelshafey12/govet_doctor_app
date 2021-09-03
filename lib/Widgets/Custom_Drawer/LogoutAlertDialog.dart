@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:govet_doctor_app/Screens/Doctor/Home.dart';
+import 'package:govet_doctor_app/Screens/Home.dart';
 import '../../../constants.dart';
 
 class CustomDialog extends StatelessWidget {

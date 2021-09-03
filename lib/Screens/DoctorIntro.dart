@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:govet_doctor_app/Screens/Doctor/VideoCall.dart';
 import '../constants.dart';
-import 'Doctor/Home.dart';
+import 'Home.dart';
 
 class DoctorIntro extends StatelessWidget {
   const DoctorIntro({Key? key}) : super(key: key);

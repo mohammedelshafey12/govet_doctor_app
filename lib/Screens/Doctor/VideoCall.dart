@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:govet_doctor_app/constants.dart';
-
 import 'inCommingCallCard.dart';
 
 class VideoCallScreen extends StatelessWidget {

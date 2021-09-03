@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:govet_doctor_app/Screens/Doctor/VideoCall.dart';
 import 'package:govet_doctor_app/constants.dart';
-import 'Reservations.dart';
+import 'Doctor/Reservations.dart';
 
 class Home extends StatefulWidget {
   @override
