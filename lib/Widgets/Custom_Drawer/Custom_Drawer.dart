@@ -59,7 +59,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       showDialog(
                         context: context,
                         barrierDismissible: false,
-                        builder: (BuildContext context) => LogOutAlertDialog(),
+                        builder: (context) => LogOutAlertDialog(),
                       );
                     },
                   ),
