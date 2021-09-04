@@ -4,14 +4,16 @@ import 'package:flutter/painting.dart';
 import 'package:govet_doctor_app/constants.dart';
 
 class inCommingReserveCard extends StatelessWidget {
-const inCommingReserveCard(
+const inCommingReserveCard (
 {
   required this.width,
   required this.height,
   required this.name,
   required this.petname,
   required this.petbreed,
-  required this.diagnoses,
+  required this.ReasonOfVisit,
+  required this.date,
+  required this.address,
   required this.imgUrl,
 }
     );
@@ -20,7 +22,9 @@ final double height;
 final String name;
 final String petname;
 final String petbreed;
-final String diagnoses;
+final String ReasonOfVisit;
+final String date;
+final String address;
 final String imgUrl;
   @override
   Widget build(BuildContext context) {
@@ -44,20 +48,23 @@ final String imgUrl;
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
+          CircleAvatar(
+            radius: 30,
+            backgroundImage: AssetImage(Constants.person),
+          ),
+          SizedBox(
+            width: width * 0.05,
+          ),
+          // Client name & It's pit name and breed & address & Reservated on:
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Avatar Image
-              CircleAvatar(
-                radius: 25,
-                backgroundImage: AssetImage(Constants.person),
-              ),
-              SizedBox(
-                width: width * 0.05,
-              ),
-              // Client name & It's pit name and breed
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
+                  Icon(Icons.person,size: 35,color: Constants.primary_blue_color,),
+                  SizedBox(
+                    width: width * 0.02,
+                  ),
                   Text(
                     name,
                     style: TextStyle(
@@ -65,33 +72,65 @@ final String imgUrl;
                         color: Colors.grey,
                         fontFamily: 'custom_font_bold'),
                   ),
-                  SizedBox(height: height * 0.008),
-                  Row(
-                    children: [
-                      Image.asset(
-                        Constants.pawprintSolid,
-                        width: 35,
-                      ),
-                      SizedBox(
-                        width: width * 0.02,
-                      ),
-                      Text(
-                        '$petname ($petbreed)',
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey,
-                            fontFamily: 'custom_font_bold'),
-                      ),
-                    ],
+                ],
+              ),
+              SizedBox(height: height * 0.003),
+              Row(
+                children: [
+                  Image.asset(
+                    Constants.pawprintSolid,
+                    width: 30,
+                  ),
+                  SizedBox(
+                    width: width * 0.02,
+                  ),
+                  Text(
+                    '$petname ($petbreed)',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey,
+                        fontFamily: 'custom_font_bold'),
                   ),
                 ],
-              )
+              ),
+              SizedBox(height: height * 0.003),
+              Row(
+                children: [
+                  Icon(Icons.access_time,size: 35,color: Constants.primary_blue_color,),
+                  SizedBox(
+                    width: width * 0.02,
+                  ),
+                  Text(
+                    '$date',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey,
+                        fontFamily: 'custom_font_bold'),
+                  ),
+                ],
+              ),
+              SizedBox(height: height * 0.003),
+              Row(
+                children: [
+                  Icon(Icons.location_on,size: 35,color: Constants.primary_blue_color,),
+                  SizedBox(
+                    width: width * 0.02,
+                  ),
+                  Text(
+                    '$address',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey,
+                        fontFamily: 'custom_font_bold',overflow: TextOverflow.clip),
+                  ),
+                ],
+              ),
             ],
           ),
           SizedBox(height: height * 0.02,),
           Align(
               alignment:Alignment.centerLeft,
-              child: Text(diagnoses,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)),
+              child: Text(ReasonOfVisit,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)),
           SizedBox(height: height * 0.02,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
