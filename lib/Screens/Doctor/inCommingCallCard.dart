@@ -26,6 +26,7 @@ final String imgUrl;
       // Box Properties
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(10),
+      height: height * 0.185,
       decoration: BoxDecoration(
           color: Colors.grey[100],
           borderRadius: BorderRadius.circular(20),
@@ -45,7 +46,7 @@ final String imgUrl;
               // Avatar Image
               CircleAvatar(
                 radius: 25,
-                backgroundImage: AssetImage(Constants.person),
+                backgroundImage: AssetImage(imgUrl),
               ),
               SizedBox(
                 width: width * 0.05,

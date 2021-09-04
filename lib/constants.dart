@@ -1,27 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Constants {
   static const String agouraId = 'd004bdf5771e439c96f5f558b7aae997';
 
   ///firebase Collections
   static const String userCollection = 'Users';
+  static const String doctorCollection = 'DoctorCollection';
   static const String petCollection = 'Pets';
   static const String homeVisitCollection = 'HomeVisitCollection';
 
-  /// Firebase Constants
+  /// Firebase Constants user collection
   static const String userName = 'UserName';
   static const String userPhone = 'UserPhone';
   static const String userId = 'UserId';
   static const String userAge = 'UserAge';
   static const String userImageUrl = 'UserImageUrl';
+
+  /// Firebase Constants Home Visit Date collection
   static const String homeVisitDate = 'HomeVisitDate';
   static const String homeVisitAddress = 'HomeVisitAddress';
   static const String homeVisitReason = 'HomeVisitReason';
   static const String homeVisitDoctorId = 'HomeVisitDoctorId';
   static const String homeVisitDoctorName = 'HomeVisitDoctorName';
   static const String homeVisitDoctorPhone = 'HomeVisitDoctorPhone';
+
+  /// Firebase Constants Pet collection
   static const String petId = 'PetId';
   static const String petName = 'PetName';
   static const String petBreed = 'PetBreed';
@@ -31,6 +37,15 @@ class Constants {
   static const String petWeight = 'PetWeight';
   static const String petHeight = 'PetHeight';
   static const String petAdditionalNote = 'PetAdditionalNote';
+
+  /// Firebase Constants Home Visit Date collection
+  static const String doctorId = 'DoctorId';
+  static const String doctorName = 'DoctorName';
+  static const String doctorAge = 'DoctorAge';
+  static const String doctorPhone = 'DoctorPhone';
+  static const String doctorEmail = 'DoctorEmail';
+  static const String doctorAddress = 'DoctorAddress';
+  static const String doctorImageUrl = 'DoctorImageUrl';
 
   /// constants app colors
   static const Color primary_blue_color = Color(0xfff25265E);
@@ -42,33 +57,16 @@ class Constants {
   static const String doctorwithdog = 'images/doctorwithdog.png';
   static const String pawprintSolid = 'images/pawprintSolid.png';
   static const String person = 'images/person.png';
-}
 
-NavigationR(BuildContext context, Widget widget) {
-  Navigator.pushReplacement(
-      context, MaterialPageRoute(builder: (conext) => widget));
-}
-
-NavigationP(BuildContext context, Widget widget) {
-  Navigator.push(context, MaterialPageRoute(builder: (conext) => widget));
-}
-
-Widget grey_title_text({
-  required String text,
-}) =>
-    Text(
-      text,
-      style: TextStyle(fontSize: 18, color: Colors.grey),
+  /// method navigate page
+  static void navigatorPush({context, screen}) {
+    Navigator.push(
+      context,
+      PageTransition(
+        type: PageTransitionType.fade,
+        child: screen,
+      ),
     );
+  }
 
-Widget blue_title_text({
-  required String text,
-}) =>
-    Text(
-      text,
-      style: TextStyle(
-          fontSize: 26,
-          color: Constants.primary_blue_color,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'custom_font'),
-    );
+}

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:govet_doctor_app/Screens/Home.dart';
+import 'package:govet_doctor_app/Screens/Home_Screen/home_screen.dart';
 import '../../../constants.dart';
 
 class CustomDialog extends StatelessWidget {
@@ -57,7 +57,7 @@ class CustomDialog extends StatelessWidget {
                     auth.signOut().whenComplete(
                           () => Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                              builder: (context) => Home(),
+                              builder: (context) => HomeScreen(),
                             ),
                             (Route<dynamic> route) => false,
                           ),
