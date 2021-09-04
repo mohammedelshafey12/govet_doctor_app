@@ -55,6 +55,7 @@ class Constants {
   /// constants images
   static const String splash_logo = 'images/splash_logo.png';
   static const String logInLogo= 'images/log_in_logo.png';
+  static const String signUpLogo= 'images/log_in_logo.png';
   static const String doctorwithdog = 'images/doctorwithdog.png';
   static const String pawprintSolid = 'images/pawprintSolid.png';
   static const String person = 'images/person.png';
