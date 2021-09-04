@@ -140,7 +140,7 @@ final String imgUrl;
                 child: CircleAvatar(
                   backgroundColor: Colors.red,
                   radius: width * 0.085,
-                  child: Text('Reject',style: TextStyle(fontSize:width*0.05,fontWeight: FontWeight.bold),)
+                  child: Text('Reject',style: TextStyle(color:Colors.white,fontSize:width*0.05,fontWeight: FontWeight.bold),)
                 ),
               ),
               InkWell(
@@ -148,7 +148,7 @@ final String imgUrl;
                 child: CircleAvatar(
                   backgroundColor: Colors.green,
                   radius: width * 0.085,
-                  child: Text('Accept',style: TextStyle(fontSize:width*0.05,fontWeight: FontWeight.bold),)
+                  child: Text('Accept',style: TextStyle(color:Colors.white,fontSize:width*0.05,fontWeight: FontWeight.bold),)
                 ),
               ),
             ],
