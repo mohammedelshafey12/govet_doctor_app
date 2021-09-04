@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:govet_doctor_app/Screens/Doctor/VideoCall.dart';
+import 'package:govet_doctor_app/Widgets/Custom_Drawer/Custom_Drawer.dart';
 import 'package:govet_doctor_app/constants.dart';
 import '../Doctor/Reservations.dart';
 
@@ -19,6 +22,17 @@ class _HomeScreenState extends State<HomeScreen> {
     'Video Call',
     'HomeVisit Reservations',
   ];
+  String uid = '';
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
+      User? userAuth = FirebaseAuth.instance.currentUser;
+      setState(() {
+        uid = userAuth!.uid;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: widgets[_selectedItemPosition],
-      drawer: Drawer(),
+      drawer: CustomDrawer(docId: uid,),
     );
   }
 }

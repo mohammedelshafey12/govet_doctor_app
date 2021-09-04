@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
+
 class CustomDrawerItem extends StatelessWidget {
   CustomDrawerItem({
-    required this.imageUrl,
+    required this.icon,
     required this.itemTitle,
     required this.onTap,
   });
 
-  final String imageUrl;
+  final icon;
   final String itemTitle;
   final Function onTap;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.asset(
-        imageUrl,
-        width: 30,
-        fit: BoxFit.cover,
-      ),
+      leading: Icon(icon, size: 30, color: Constants.primary_blue_color,),
       title: Text(
         itemTitle,
         style: TextStyle(
