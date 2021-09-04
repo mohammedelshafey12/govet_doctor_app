@@ -30,7 +30,7 @@ class _LogInScreenState extends State<LogInScreen> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return ModalProgressHUD(
-      inAsyncCall: Provider.of<ModelHud>(context).isLoading,
+      inAsyncCall: Provider.of<ModelHud>(context).isLoading1,
       child: Scaffold(
         backgroundColor: Constants.primary_blue_color,
         appBar: AppBar(
