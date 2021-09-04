@@ -1,35 +1,33 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:govet_doctor_app/constants.dart';
 
+
+
 class inCommingReserveCard extends StatelessWidget {
-const inCommingReserveCard (
-{
-  required this.width,
-  required this.height,
-  required this.name,
-  required this.petname,
-  required this.petbreed,
-  required this.ReasonOfVisit,
-  required this.date,
-  required this.address,
-  required this.imgUrl,
-}
-    );
-final double width;
-final double height;
-final String name;
-final String petname;
-final String petbreed;
-final String ReasonOfVisit;
-final String date;
-final String address;
-final String imgUrl;
+  const inCommingReserveCard({
+    required this.width,
+    required this.height,
+    required this.name,
+    required this.ReasonOfVisit,
+    required this.date,
+    required this.address,
+    required this.imgUrl,
+  });
+  final double width;
+  final double height;
+  final String name;
+  final String ReasonOfVisit;
+  final String date;
+  final String address;
+  final String imgUrl;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
     return Container(
       // Box Properties
       margin: EdgeInsets.all(10),
@@ -50,7 +48,7 @@ final String imgUrl;
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundImage: AssetImage(Constants.person),
+            backgroundImage: AssetImage(''),
           ),
           SizedBox(
             width: width * 0.05,
@@ -61,7 +59,11 @@ final String imgUrl;
             children: [
               Row(
                 children: [
-                  Icon(Icons.person,size: 35,color: Constants.primary_blue_color,),
+                  Icon(
+                    Icons.person,
+                    size: 35,
+                    color: Constants.primary_blue_color,
+                  ),
                   SizedBox(
                     width: width * 0.02,
                   ),
@@ -77,26 +79,11 @@ final String imgUrl;
               SizedBox(height: height * 0.003),
               Row(
                 children: [
-                  Image.asset(
-                    Constants.pawprintSolid,
-                    width: 30,
+                  Icon(
+                    Icons.access_time,
+                    size: 35,
+                    color: Constants.primary_blue_color,
                   ),
-                  SizedBox(
-                    width: width * 0.02,
-                  ),
-                  Text(
-                    '$petname ($petbreed)',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.grey,
-                        fontFamily: 'custom_font_bold'),
-                  ),
-                ],
-              ),
-              SizedBox(height: height * 0.003),
-              Row(
-                children: [
-                  Icon(Icons.access_time,size: 35,color: Constants.primary_blue_color,),
                   SizedBox(
                     width: width * 0.02,
                   ),
@@ -112,7 +99,11 @@ final String imgUrl;
               SizedBox(height: height * 0.003),
               Row(
                 children: [
-                  Icon(Icons.location_on,size: 35,color: Constants.primary_blue_color,),
+                  Icon(
+                    Icons.location_on,
+                    size: 35,
+                    color: Constants.primary_blue_color,
+                  ),
                   SizedBox(
                     width: width * 0.02,
                   ),
@@ -121,35 +112,53 @@ final String imgUrl;
                     style: TextStyle(
                         fontSize: 18,
                         color: Colors.grey,
-                        fontFamily: 'custom_font_bold',overflow: TextOverflow.clip),
+                        fontFamily: 'custom_font_bold',
+                        overflow: TextOverflow.clip),
                   ),
                 ],
               ),
             ],
           ),
-          SizedBox(height: height * 0.02,),
+          SizedBox(
+            height: height * 0.02,
+          ),
           Align(
-              alignment:Alignment.centerLeft,
-              child: Text(ReasonOfVisit,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)),
-          SizedBox(height: height * 0.02,),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                ReasonOfVisit,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              )),
+          SizedBox(
+            height: height * 0.02,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               InkWell(
                 onTap: () {},
                 child: CircleAvatar(
-                  backgroundColor: Colors.red,
-                  radius: width * 0.085,
-                  child: Text('Reject',style: TextStyle(color:Colors.white,fontSize:width*0.05,fontWeight: FontWeight.bold),)
-                ),
+                    backgroundColor: Colors.red,
+                    radius: width * 0.085,
+                    child: Text(
+                      'Reject',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: width * 0.05,
+                          fontWeight: FontWeight.bold),
+                    )),
               ),
               InkWell(
                 onTap: () {},
                 child: CircleAvatar(
-                  backgroundColor: Colors.green,
-                  radius: width * 0.085,
-                  child: Text('Accept',style: TextStyle(color:Colors.white,fontSize:width*0.05,fontWeight: FontWeight.bold),)
-                ),
+                    backgroundColor: Colors.green,
+                    radius: width * 0.085,
+                    child: Text(
+                      'Accept',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: width * 0.05,
+                          fontWeight: FontWeight.bold),
+                    )),
               ),
             ],
           ),
