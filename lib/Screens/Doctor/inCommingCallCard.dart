@@ -26,7 +26,6 @@ final String imgUrl;
       // Box Properties
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(10),
-      height: height * 0.185,
       decoration: BoxDecoration(
           color: Colors.grey[100],
           borderRadius: BorderRadius.circular(20),
@@ -41,48 +40,43 @@ final String imgUrl;
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
+          CircleAvatar(
+            radius: 25,
+            backgroundImage: AssetImage(imgUrl),
+          ),
+          SizedBox(
+            width: width * 0.05,
+          ),
+          // Client name & It's pit name and breed
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Avatar Image
-              CircleAvatar(
-                radius: 25,
-                backgroundImage: AssetImage(imgUrl),
+              Text(
+                name,
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.grey,
+                    fontFamily: 'custom_font_bold'),
               ),
-              SizedBox(
-                width: width * 0.05,
-              ),
-              // Client name & It's pit name and breed
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              SizedBox(height: height * 0.008),
+              Row(
                 children: [
+                  Image.asset(
+                    Constants.pawprintSolid,
+                    width: 35,
+                  ),
+                  SizedBox(
+                    width: width * 0.02,
+                  ),
                   Text(
-                    name,
+                    '$petname ($petbreed)',
                     style: TextStyle(
                         fontSize: 18,
                         color: Colors.grey,
                         fontFamily: 'custom_font_bold'),
                   ),
-                  SizedBox(height: height * 0.008),
-                  Row(
-                    children: [
-                      Image.asset(
-                        Constants.pawprintSolid,
-                        width: 35,
-                      ),
-                      SizedBox(
-                        width: width * 0.02,
-                      ),
-                      Text(
-                        '$petname ($petbreed)',
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey,
-                            fontFamily: 'custom_font_bold'),
-                      ),
-                    ],
-                  ),
                 ],
-              )
+              ),
             ],
           ),
           //Calling answer and reject

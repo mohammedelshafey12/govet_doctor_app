@@ -30,7 +30,7 @@ class inCommingReserveCard extends StatelessWidget {
 
     return Container(
       // Box Properties
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.only(left:15,right: 15,bottom: 10,top: 10),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: Colors.grey[100],
@@ -48,7 +48,7 @@ class inCommingReserveCard extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundImage: AssetImage(''),
+            backgroundImage: AssetImage(Constants.person),
           ),
           SizedBox(
             width: width * 0.05,
@@ -61,7 +61,7 @@ class inCommingReserveCard extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.person,
-                    size: 35,
+                    size: 30,
                     color: Constants.primary_blue_color,
                   ),
                   SizedBox(
@@ -81,7 +81,7 @@ class inCommingReserveCard extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.access_time,
-                    size: 35,
+                    size: 30,
                     color: Constants.primary_blue_color,
                   ),
                   SizedBox(
@@ -90,8 +90,8 @@ class inCommingReserveCard extends StatelessWidget {
                   Text(
                     '$date',
                     style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
+                        fontSize: 16,
+                        color: Colors.grey,
                         fontFamily: 'custom_font_bold'),
                   ),
                 ],
@@ -101,19 +101,23 @@ class inCommingReserveCard extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.location_on,
-                    size: 35,
+                    size: 30,
                     color: Constants.primary_blue_color,
                   ),
                   SizedBox(
                     width: width * 0.02,
                   ),
-                  Text(
-                    '$address',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.grey,
-                        fontFamily: 'custom_font_bold',
-                        overflow: TextOverflow.clip),
+                  Expanded(
+                    child: Text(
+                      '$address',
+                      maxLines: 4,
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey,
+                          fontFamily: 'custom_font_bold',
+                          overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -122,12 +126,30 @@ class inCommingReserveCard extends StatelessWidget {
           SizedBox(
             height: height * 0.02,
           ),
-          Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                ReasonOfVisit,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              )),
+          Row(
+            children: [
+              Icon(
+                Icons.info,
+                size: 30,
+                color: Constants.primary_blue_color,
+              ),
+              SizedBox(
+                width: width * 0.02,
+              ),
+              Expanded(
+                child: Text(
+                  '$ReasonOfVisit',
+                  maxLines: 4,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                    fontFamily: 'custom_font_bold',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
+            ],
+          ),
           SizedBox(
             height: height * 0.02,
           ),

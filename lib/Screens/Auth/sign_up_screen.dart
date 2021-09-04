@@ -83,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   AuthCustomTextFormField(
                     hint: 'Address',
                     controller: doctorAddressController,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.text,
                     icon: Icons.location_on,
                   ),
                   AuthCustomTextFormField(
