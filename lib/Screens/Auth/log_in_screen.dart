@@ -29,16 +29,16 @@ class _LogInScreenState extends State<LogInScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return ModalProgressHUD(
-      inAsyncCall: Provider.of<ModelHud>(context).isLoading,
-      child: Scaffold(
-        backgroundColor: Constants.primary_blue_color,
-        appBar: AppBar(
-          title: Text(
-            'Log In',
-          ),
+    return Scaffold(
+      backgroundColor: Constants.primary_blue_color,
+      appBar: AppBar(
+        title: Text(
+          'Log In',
         ),
-        body: Form(
+      ),
+      body: ModalProgressHUD(
+        inAsyncCall: Provider.of<ModelHud>(context).isLoading1,
+        child: Form(
           key: _globalKey,
           child: Center(
             child: Container(

@@ -32,7 +32,8 @@ class Splash extends State<Splash_Screen> {
                 if (userAuth == null) {
                   return LogInScreen();
                 } else {
-                  return HomeScreen();
+                  return LogInScreen();
+                  // return HomeScreen();
                 }
               },
             ),
