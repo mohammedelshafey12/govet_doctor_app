@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:govet_doctor_app/Screens/Home_Screen/home_screen.dart';
-import '../../../constants.dart';
+import 'package:govet_doctor_app/Screens/Auth/log_in_screen.dart';
 
-class CustomDialog extends StatelessWidget {
+class LogOutAlertDialog extends StatelessWidget {
+  const LogOutAlertDialog({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return AlertDialog(
       elevation: 0,
       backgroundColor: Colors.transparent,
@@ -20,10 +20,7 @@ class CustomDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(
-              '',
-              width: height * 0.1,
-            ),
+            Icon(Icons.logout,size: height * 0.1,),
             SizedBox(
               height: height * 0.02,
             ),
@@ -32,7 +29,6 @@ class CustomDialog extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontFamily: 'custom_font_bold',
-                color: Constants.primary_blue_color,
               ),
             ),
             SizedBox(
@@ -56,12 +52,12 @@ class CustomDialog extends StatelessWidget {
                     FirebaseAuth auth = FirebaseAuth.instance;
                     auth.signOut().whenComplete(
                           () => Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                              builder: (context) => HomeScreen(),
-                            ),
+                        MaterialPageRoute(
+                          builder: (context) => LogInScreen(),
+                        ),
                             (Route<dynamic> route) => false,
-                          ),
-                        );
+                      ),
+                    );
                   },
                 ),
                 RaisedButton(

@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:govet_doctor_app/constants.dart';
 import '../Loading_Page.dart';
-import 'LogoutAlertDialog.dart';
 import 'Custom_Drawer_Header.dart';
 import 'Custom_Drawer_Item.dart';
+import 'log_out_alert_dialog.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({
@@ -61,7 +59,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       showDialog(
                         context: context,
                         barrierDismissible: false,
-                        builder: (BuildContext context) => CustomDialog(),
+                        builder: (BuildContext context) => LogOutAlertDialog(),
                       );
                     },
                   ),
