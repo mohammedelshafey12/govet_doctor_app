@@ -71,7 +71,7 @@ class inCommingReserveCard extends StatelessWidget {
                     name,
                     style: TextStyle(
                         fontSize: 20,
-                        color: Colors.grey,
+                        color: Colors.black,
                         fontFamily: 'custom_font_bold'),
                   ),
                 ],
@@ -91,7 +91,7 @@ class inCommingReserveCard extends StatelessWidget {
                     '$date',
                     style: TextStyle(
                         fontSize: 18,
-                        color: Colors.grey,
+                        color: Colors.black,
                         fontFamily: 'custom_font_bold'),
                   ),
                 ],
