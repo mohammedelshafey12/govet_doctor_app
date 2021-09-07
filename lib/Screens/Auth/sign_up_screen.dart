@@ -121,6 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               doctorEmail: doctorEmailController.text,
                               doctorPhone: doctorPhoneController.text,
                               doctorAddress: doctorAddressController.text,
+                              doctorIsVerify: false,
                               doctorImageUrl: null,
                             ),
                           );

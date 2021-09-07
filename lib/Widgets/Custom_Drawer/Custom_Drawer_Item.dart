@@ -32,7 +32,9 @@ class CustomDrawerItem extends StatelessWidget {
         size: 14,
         color: Colors.black,
       ),
-      onTap: () {}
+      onTap: (){
+        onTap();
+      },
     );
   }
 }
