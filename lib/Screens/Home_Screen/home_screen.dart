@@ -1,15 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
-import 'package:govet_doctor_app/Screens/Doctor/VideoCall.dart';
-import 'package:govet_doctor_app/Screens/Home_Screen/waiting_verify.dart';
-import 'package:govet_doctor_app/Screens/Home_Visit_Reservation/home_visit_submit_new_reservation.dart';
-import 'package:govet_doctor_app/Screens/Home_Visit_Reservation/home_visit_reservation_home_screen.dart';
+import 'package:govet_doctor_app/Screens/Home_Visit_Reservation_Screen/home_visit_reservation_home_screen.dart';
+import 'package:govet_doctor_app/Screens/Vedio_Call_Screen/video_call_screen.dart';
 import 'package:govet_doctor_app/Widgets/Custom_Drawer/Custom_Drawer.dart';
 import 'package:govet_doctor_app/constants.dart';
-import '../Doctor/Reservations.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,34 +14,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String uid = '';
-  var doctorData;
-  bool isVerify = false;
 
   void initState() {
     // TODO: implement initState
     super.initState();
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
-      User? userAuth = FirebaseAuth.instance.currentUser;
-      setState(() {
-        uid = userAuth!.uid;
-      });
-      FirebaseFirestore.instance
-          .collection(Constants.doctorCollection)
-          .doc(uid)
-          .get()
-          .then((value) {
-        doctorData = value.data()!;
-        isVerify = value.data()![Constants.doctorIsVerify];
-        if (isVerify == false) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (BuildContext context) {
-                return WaitingVerify();
-              },
-            ),
-          );
-        }
-      });
+    User? userAuth = FirebaseAuth.instance.currentUser;
+    setState(() {
+      uid = userAuth!.uid;
     });
   }
 
@@ -55,9 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     List<Widget> widgets = [
       VideoCallScreen(),
-      HomeVisitReservationHomeScreen(
-        doctorData: doctorData,
-      ),
+      HomeVisitReservationHomeScreen(),
     ];
     List titleAppBar = [
       'Video Call',
@@ -93,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: widgets[_selectedItemPosition],
       drawer: CustomDrawer(
-        doctorData: doctorData,
+        doctorId: uid,
       ),
     );
   }

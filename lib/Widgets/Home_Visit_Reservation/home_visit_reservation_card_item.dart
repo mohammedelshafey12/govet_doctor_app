@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:govet_doctor_app/Screens/Home_Visit_Reservation_Screen/home_visit_reservation_info_screen.dart';
 import 'package:govet_doctor_app/Services/store.dart';
 import 'package:govet_doctor_app/Widgets/Home_Visit_Reservation/home_visit_reservation_list_tile_item.dart';
 import 'package:govet_doctor_app/constants.dart';
-
-import '../../Screens/Home_Visit_Reservation/home_visit_reservation_info_screen.dart';
 
 class HomeVisitReservationCardItem extends StatelessWidget {
   const HomeVisitReservationCardItem({
@@ -19,7 +18,8 @@ class HomeVisitReservationCardItem extends StatelessWidget {
   final index;
   final doctorId;
   final doctorName;
-  final doctorPhone;
+  final
+  doctorPhone;
 
   @override
   Widget build(BuildContext context) {

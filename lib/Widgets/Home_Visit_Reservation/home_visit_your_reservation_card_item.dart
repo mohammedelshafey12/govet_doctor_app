@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:govet_doctor_app/Screens/Home_Visit_Reservation/home_visit_reservation_info_screen.dart';
+import 'package:govet_doctor_app/Screens/Home_Visit_Reservation_Screen/home_visit_reservation_info_screen.dart';
 import 'package:govet_doctor_app/Widgets/Home_Visit_Reservation/home_visit_reservation_list_tile_item.dart';
 
 import '../../constants.dart';

@@ -1,84 +1,107 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:govet_doctor_app/Screens/Home_Visit_Reservation/home_visit_submit_new_reservation.dart';
-import 'package:govet_doctor_app/Screens/Home_Visit_Reservation/home_visit_your_reservation_screen.dart';
+import 'package:govet_doctor_app/Screens/Home_Visit_Reservation_Screen/home_visit_reservation_home_screen.dart';
+import 'package:govet_doctor_app/Screens/Home_Visit_Reservation_Screen/home_visit_submit_new_reservation.dart';
+import 'package:govet_doctor_app/Screens/Home_Visit_Reservation_Screen/home_visit_your_reservation_screen.dart';
 import 'package:govet_doctor_app/constants.dart';
 import '../Loading_Page.dart';
 import 'Custom_Drawer_Header.dart';
 import 'Custom_Drawer_Item.dart';
 import 'log_out_alert_dialog.dart';
 
-class CustomDrawer extends StatefulWidget {
+class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
-    @required this.doctorData,
+    Key? key,
+    required this.doctorId,
   });
 
-  final doctorData;
+  final doctorId;
 
-  @override
-  _CustomDrawerState createState() => _CustomDrawerState();
-}
-
-class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
       elevation: 10,
-      child: ListView(
-        children: [
-          CustomDrawerHeader(
-            profileImage: widget.doctorData[Constants.doctorImageUrl] ?? '',
-            userName: widget.doctorData[Constants.doctorName],
-            userEmail: widget.doctorData[Constants.doctorEmail],
-          ),
-          CustomDrawerItem(
-            icon: Icons.notifications,
-            itemTitle: 'Notification',
-            onTap: () {},
-          ),
-          CustomDrawerItem(
-            icon: Icons.person,
-            itemTitle: 'Profile',
-            onTap: () {},
-          ),
-          CustomDrawerItem(
-            icon: Icons.add,
-            itemTitle: 'Submit New Reservation',
-            onTap: () {
-              Constants.navigatorPush(
-                context: context,
-                screen: HomeVisitSubmitNewReservationScreen(
-                  doctorId: widget.doctorData[Constants.doctorId],
-                  doctorName: widget.doctorData[Constants.doctorName],
-                  doctorPhone: widget.doctorData[Constants.doctorPhone],
-                ),
+      child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection(Constants.doctorCollection)
+              .where(
+                Constants.doctorId,
+                isEqualTo: doctorId,
+              )
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              var doctorData = snapshot.data!.docs[0];
+              return ListView(
+                children: [
+                  CustomDrawerHeader(
+                    userName: doctorData[Constants.doctorName],
+                    userEmail: doctorData[Constants.doctorEmail],
+                    profileImage: doctorData[Constants.doctorImageUrl],
+                  ),
+                  CustomDrawerItem(
+                    icon: Icons.notifications,
+                    itemTitle: 'Notification',
+                    onTap: () {},
+                  ),
+                  CustomDrawerItem(
+                    icon: Icons.person,
+                    itemTitle: 'Profile',
+                    onTap: () {},
+                  ),
+                  CustomDrawerItem(
+                    icon: Icons.home,
+                    itemTitle: 'Home Visit',
+                    onTap: () {
+                      Constants.navigatorPush(
+                        context: context,
+                        screen: Scaffold(
+                          appBar: AppBar(
+                            title: Text('Home Visit'),
+                          ),
+                          body: HomeVisitReservationHomeScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  CustomDrawerItem(
+                    icon: Icons.add_box_rounded,
+                    itemTitle: 'New Reservation',
+                    onTap: () {
+                      Constants.navigatorPush(
+                        context: context,
+                        screen: HomeVisitSubmitNewReservationScreen(),
+                      );
+                    },
+                  ),
+                  CustomDrawerItem(
+                    icon: Icons.menu_book,
+                    itemTitle: 'Your Reservation',
+                    onTap: () {
+                      Constants.navigatorPush(
+                        context: context,
+                        screen: HomeVisitYourReservation(),
+                      );
+                    },
+                  ),
+                  Divider(),
+                  CustomDrawerItem(
+                    icon: Icons.logout,
+                    itemTitle: 'Sign Out',
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (context) => LogOutAlertDialog(),
+                      );
+                    },
+                  ),
+                ],
               );
-            },
-          ),
-          CustomDrawerItem(
-            icon: Icons.menu_book,
-            itemTitle: 'Your Home Visit',
-            onTap: () {
-              Constants.navigatorPush(
-                context: context,
-                screen: HomeVisitYourReservation(doctorId: widget.doctorData[Constants.doctorId]),
-              );
-            },
-          ),
-          Divider(),
-          CustomDrawerItem(
-            icon: Icons.logout,
-            itemTitle: 'Sign Out',
-            onTap: () {
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (context) => LogOutAlertDialog(),
-              );
-            },
-          ),
-        ],
-      ),
+            } else {
+              return LoadingPage();
+            }
+          }),
     );
   }
 }

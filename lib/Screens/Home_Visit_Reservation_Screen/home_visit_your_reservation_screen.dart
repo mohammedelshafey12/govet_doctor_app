@@ -1,17 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:govet_doctor_app/Widgets/Home_Visit_Reservation/home_visit_your_reservation_card_item.dart';
 import 'package:govet_doctor_app/Widgets/Loading_Page.dart';
 
 import '../../constants.dart';
 
-class HomeVisitYourReservation extends StatelessWidget {
-  const HomeVisitYourReservation({
-    Key? key,
-    required this.doctorId,
-  }) : super(key: key);
-  final doctorId;
+class HomeVisitYourReservation extends StatefulWidget {
+  @override
+  State<HomeVisitYourReservation> createState() => _HomeVisitYourReservationState();
+}
 
+class _HomeVisitYourReservationState extends State<HomeVisitYourReservation> {
+  String uid = '';
+  var doctorData;
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    User? userAuth = FirebaseAuth.instance.currentUser;
+    setState(() {
+      uid = userAuth!.uid;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +39,7 @@ class HomeVisitYourReservation extends StatelessWidget {
               )
               .where(
                 Constants.homeVisitDoctorId,
-                isEqualTo: doctorId,
+                isEqualTo: uid,
               )
               .snapshots(),
           builder: (context, snapshot) {
