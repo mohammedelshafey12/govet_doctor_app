@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Splash_Screen(),
         theme: ThemeData(
+          fontFamily: 'custom_font',
           appBarTheme: AppBarTheme(
             // ignore: deprecated_member_use
             backwardsCompatibility: false,

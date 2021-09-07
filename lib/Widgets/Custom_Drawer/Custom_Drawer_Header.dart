@@ -27,7 +27,7 @@ class CustomDrawerHeader extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50.0),
                 ),
-                child: profileImage == 'null'
+                child: profileImage == ''
                     ? Icon(
                         Icons.person,
                   size: width * 0.2,

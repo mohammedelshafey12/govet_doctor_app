@@ -5,7 +5,8 @@ import 'package:page_transition/page_transition.dart';
 
 class Constants {
   static const String agouraId = 'd004bdf5771e439c96f5f558b7aae997';
-
+  // double width = MediaQuery.of(context).size.width;
+  // double height = MediaQuery.of(context).size.height;
   ///firebase Collections
   static const String userCollection = 'Users';
   static const String doctorCollection = 'DoctorCollection';
@@ -26,6 +27,7 @@ class Constants {
   static const String homeVisitDoctorId = 'HomeVisitDoctorId';
   static const String homeVisitDoctorName = 'HomeVisitDoctorName';
   static const String homeVisitDoctorPhone = 'HomeVisitDoctorPhone';
+  static const String homeVisitVerify = 'HomeVisitVerify';
 
   /// Firebase Constants Pet collection
   static const String petId = 'PetId';
@@ -46,6 +48,7 @@ class Constants {
   static const String doctorEmail = 'DoctorEmail';
   static const String doctorAddress = 'DoctorAddress';
   static const String doctorImageUrl = 'DoctorImageUrl';
+  static const String doctorIsVerify = 'DoctorIsVerify';
 
   /// constants app colors
   static const Color primary_blue_color = Color(0xfff25265E);
@@ -68,6 +71,17 @@ class Constants {
         type: PageTransitionType.fade,
         child: screen,
       ),
+    );
+  }
+  /// method navigate and remove page
+  static void navigatorPushAndRemove({context, screen}) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      PageTransition(
+        type: PageTransitionType.fade,
+        child: screen,
+      ),
+          (route) => false,
     );
   }
 
