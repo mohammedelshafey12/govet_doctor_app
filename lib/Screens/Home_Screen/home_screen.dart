@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
@@ -5,6 +6,7 @@ import 'package:govet_doctor_app/Screens/Home_Visit_Reservation_Screen/home_visi
 import 'package:govet_doctor_app/Screens/Vedio_Call_Screen/video_call_screen.dart';
 import 'package:govet_doctor_app/Widgets/Custom_Drawer/Custom_Drawer.dart';
 import 'package:govet_doctor_app/constants.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -22,10 +24,39 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       uid = userAuth!.uid;
     });
+
+    OneSignal.shared.setNotificationOpenedHandler((openedResult) { var data = openedResult.notification.additionalData![0]['data'];});
+    OneSignal.shared.setNotificationWillShowInForegroundHandler((event) {
+      var data = event.notification.additionalData![0]["data"];
+    });
+    OneSignal.shared
+        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+      print('Notification Opened');
+      //Constants.navigatorPush(context: context,screen:NotificationWidget());
+    });
+
+    OneSignal.shared.getDeviceState().then((state) {
+      DocumentReference ref = FirebaseFirestore.instance
+          .collection(Constants.doctorCollection)
+          .doc(FirebaseAuth.instance.currentUser!.uid);
+      print('sssssssssss${state?.userId}');
+      ref.update({
+        'osUserID': '${state?.userId}',
+      });
+    });
+     _sendNotification();
   }
-
+  _sendNotification() {
+    OneSignal.shared.postNotification(OSCreateNotification(
+      additionalData: {
+        'data': 'Doctor',
+      },
+      subtitle: 'Govet..',
+      playerIds: ['1ea35b78-e560-46ea-b97e-5d8633889605'],
+      content: 'Doctor Mohamed accept call',
+    ));
+  }
   int _selectedItemPosition = 1;
-
   @override
   Widget build(BuildContext context) {
     List<Widget> widgets = [

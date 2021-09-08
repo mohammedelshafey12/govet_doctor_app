@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
+
 import 'package:provider/provider.dart';
 
 import 'Provider/model_hud.dart';
@@ -10,6 +12,12 @@ import 'constants.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  OneSignal.shared.setAppId('4e34cd65-e3ca-4048-9bda-5af8c1075b4e');
+
+  // OneSignal.shared
+  //      .setInFocusDisplayType(OSNotificationDisplayType.notification);
+  await OneSignal.shared
+      .promptUserForPushNotificationPermission(fallbackToSettings: true);
   runApp(MyApp());
 }
 

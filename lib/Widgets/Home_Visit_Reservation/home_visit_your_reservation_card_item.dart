@@ -55,27 +55,25 @@ class HomeVisitYourReservationCardItem extends StatelessWidget {
               ),
               ListTile(
                 contentPadding: const EdgeInsets.all(0.0),
-                title: Expanded(
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Constants.primary_yellow_color,
-                    ),
-                    child: TextButton(
-                      onPressed: () {
-                        Constants.navigatorPush(
-                          context: context,
-                          screen: HomeVisitReservationInfoScreen(
-                            reservationData: homeVisitReservationData[index],
-                          ),
-                        );
-                      },
-                      child: Text(
-                        'Show More Details',
-                        style: TextStyle(
-                          color: Colors.white,
+                title: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Constants.primary_yellow_color,
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      Constants.navigatorPush(
+                        context: context,
+                        screen: HomeVisitReservationInfoScreen(
+                          reservationData: homeVisitReservationData[index],
                         ),
+                      );
+                    },
+                    child: Text(
+                      'Show More Details',
+                      style: TextStyle(
+                        color: Colors.white,
                       ),
                     ),
                   ),
