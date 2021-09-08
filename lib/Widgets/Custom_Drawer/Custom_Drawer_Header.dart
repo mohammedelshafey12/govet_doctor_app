@@ -8,7 +8,7 @@ class CustomDrawerHeader extends StatelessWidget {
     required this.userEmail,
   });
 
-  final String profileImage;
+  final profileImage;
   final String userName;
   final String userEmail;
 
@@ -27,7 +27,7 @@ class CustomDrawerHeader extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50.0),
                 ),
-                child: profileImage == 'null'
+                child: profileImage == null
                     ? Icon(
                         Icons.person,
                   size: width * 0.2,

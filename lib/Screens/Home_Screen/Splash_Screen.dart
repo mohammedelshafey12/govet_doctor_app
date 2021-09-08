@@ -5,6 +5,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:govet_doctor_app/Screens/Auth/log_in_screen.dart';
 import 'package:govet_doctor_app/Screens/Home_Screen/home_screen.dart';
+import 'package:govet_doctor_app/Screens/Home_Screen/waiting_verify.dart';
 import '../../constants.dart';
 
 class Splash_Screen extends StatefulWidget {
@@ -30,7 +31,7 @@ class Splash extends State<Splash_Screen> {
                 if (userAuth == null) {
                   return LogInScreen();
                 } else {
-                  return HomeScreen();
+                  return WaitingVerify();
                 }
               },
             ),
