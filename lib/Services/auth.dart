@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:govet_doctor_app/Screens/Home_Screen/home_screen.dart';
+import 'package:govet_doctor_app/Screens/Home_Screen/waiting_verify.dart';
 import 'package:govet_doctor_app/constants.dart';
 
 class Auth {
@@ -17,7 +18,7 @@ class Auth {
       );
       Constants.navigatorPush(
           context: context,
-          screen: HomeScreen(),
+          screen: WaitingVerify(),
       );
       return userCredential;
     } on FirebaseAuthException catch (e) {
@@ -48,7 +49,7 @@ class Auth {
       );
       Constants.navigatorPush(
           context: context,
-          screen: HomeScreen(),
+          screen: WaitingVerify(),
       );
       return null;
     } on FirebaseAuthException catch (e) {

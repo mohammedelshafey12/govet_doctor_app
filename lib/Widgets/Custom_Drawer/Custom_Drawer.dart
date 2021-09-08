@@ -39,16 +39,7 @@ class CustomDrawer extends StatelessWidget {
                     userEmail: doctorData[Constants.doctorEmail],
                     profileImage: doctorData[Constants.doctorImageUrl],
                   ),
-                  CustomDrawerItem(
-                    icon: Icons.notifications,
-                    itemTitle: 'Notification',
-                    onTap: () {},
-                  ),
-                  CustomDrawerItem(
-                    icon: Icons.person,
-                    itemTitle: 'Profile',
-                    onTap: () {},
-                  ),
+
                   CustomDrawerItem(
                     icon: Icons.home,
                     itemTitle: 'Home Visit',
