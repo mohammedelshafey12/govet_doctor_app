@@ -3,6 +3,7 @@ import 'package:govet_doctor_app/Screens/Home_Visit_Reservation_Screen/home_visi
 import 'package:govet_doctor_app/Services/store.dart';
 import 'package:govet_doctor_app/Widgets/Home_Visit_Reservation/home_visit_reservation_list_tile_item.dart';
 import 'package:govet_doctor_app/constants.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class HomeVisitReservationCardItem extends StatelessWidget {
   const HomeVisitReservationCardItem({
@@ -107,6 +108,8 @@ class HomeVisitReservationCardItem extends StatelessWidget {
                                                 doctorName: doctorName,
                                                 doctorPhone: doctorPhone,
                                               );
+                                               _sendNotification(homeVisitReservationData[
+                                               index][Constants.userOsId]);
                                             },
                                           ),
                                         ),
@@ -182,5 +185,15 @@ class HomeVisitReservationCardItem extends StatelessWidget {
         ),
       ),
     );
+  }
+  _sendNotification(String osId) {
+    OneSignal.shared.postNotification(OSCreateNotification(
+      additionalData: {
+        'data': 'Doctor',
+      },
+      subtitle: 'Doctor accept ..',
+      playerIds: [osId],
+      content: 'Doctor ${doctorName} accept Your reservation',
+    ));
   }
 }

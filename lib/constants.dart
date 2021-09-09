@@ -19,7 +19,7 @@ class Constants {
   static const String userId = 'UserId';
   static const String userAge = 'UserAge';
   static const String userImageUrl = 'UserImageUrl';
-
+  static const String userOsId = 'UserOsId';
   /// Firebase Constants Home Visit Date collection
   static const String homeVisitDate = 'HomeVisitDate';
   static const String homeVisitAddress = 'HomeVisitAddress';
