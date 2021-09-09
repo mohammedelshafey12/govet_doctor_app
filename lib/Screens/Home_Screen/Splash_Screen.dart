@@ -44,17 +44,11 @@ class Splash extends State<Splash_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: new BoxDecoration(color: Constants.primary_blue_color),
-        child: Stack(
-          children: <Widget>[
-            Center(
-              child: Image.asset(
-                Constants.splash_logo,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ],
+      backgroundColor: Constants.primary_blue_color,
+      body: Center(
+        child: Image.asset(
+          Constants.splash_logo,
+          fit: BoxFit.cover,
         ),
       ),
     );
