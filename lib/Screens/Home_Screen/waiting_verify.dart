@@ -64,7 +64,7 @@ class _WaitingVerifyState extends State<WaitingVerify> {
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                             color: Constants.primary_yellow_color,
-                            overflow: TextOverflow.ellipsis,
+
                           ),
                         ),
                       ],

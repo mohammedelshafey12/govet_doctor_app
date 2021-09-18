@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:govet_doctor_app/Models/doctor_model.dart';
 import 'package:govet_doctor_app/Screens/Home_Screen/home_screen.dart';
+import 'package:govet_doctor_app/Screens/Vedio_Call_Screen/callAccepted.dart';
 
 import '../constants.dart';
 
@@ -21,6 +22,7 @@ class Store {
       Constants.doctorIsVerify: doctor.doctorIsVerify,
     });
   }
+
 
   verifyHomeVisitReservation(
       {
@@ -71,5 +73,36 @@ class Store {
       context: context,
       screen: HomeScreen(),
     );
+  }
+
+
+  verifyCall(
+    context,String docId,
+      String doctorName,
+      String doctorId
+  ) {
+    fireStore
+        .collection(Constants.videoCallCollection)
+        .doc(docId)
+        .update({
+      Constants.isVerify: true,
+      Constants.doctorName:doctorName,
+      Constants.doctorId:doctorId
+    }).then((value) {
+    }).whenComplete(() {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "call Accepted successfully",
+            style: TextStyle(fontFamily: 'custom_Font',),
+          ),
+        ),
+      );
+    });
+    Constants.navigatorPush(
+      context: context,
+      screen: CallAccepted(),
+    );
+
   }
 }

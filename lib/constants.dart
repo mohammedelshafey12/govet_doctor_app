@@ -12,7 +12,14 @@ class Constants {
   static const String doctorCollection = 'DoctorCollection';
   static const String petCollection = 'Pets';
   static const String homeVisitCollection = 'HomeVisitCollection';
+  static const String videoCallCollection = 'VideoCallCollection';
 
+
+  /// Firebase Constants video call
+  static const String callTime = 'CallTime';
+  static const String isVerify = 'IsVerify';
+  static const String callDoctorName = 'CallDoctorName';
+  static const String callDoctorId = 'CallDoctorId';
   /// Firebase Constants user collection
   static const String userName = 'UserName';
   static const String userPhone = 'UserPhone';

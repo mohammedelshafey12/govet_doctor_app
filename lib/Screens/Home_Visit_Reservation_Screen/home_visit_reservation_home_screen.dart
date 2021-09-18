@@ -18,7 +18,7 @@ class HomeVisitReservationHomeScreen extends StatelessWidget {
         child: Column(
           children: [
             HomeVisitReservationHomeCardItem(
-              title: 'Submit New Reservation',
+              title: 'Home visit request',
               icon: Icons.add,
               onTap: () {
                 Constants.navigatorPush(
@@ -31,7 +31,7 @@ class HomeVisitReservationHomeScreen extends StatelessWidget {
               height: height * 0.1,
             ),
             HomeVisitReservationHomeCardItem(
-              title: 'Show Your Reservation',
+              title: 'Your recent history',
               icon: Icons.menu_book,
               onTap: () {
                 Constants.navigatorPush(

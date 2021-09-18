@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:govet_doctor_app/Services/store.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import '../../constants.dart';
 
+// ignore: must_be_immutable
 class VideoCallCardItem extends StatelessWidget {
-  const VideoCallCardItem({Key? key}) : super(key: key);
-
+   VideoCallCardItem({Key? key,this.data,required this.docId,required this.doctorName,required this.doctorId,required this.userOsId}) : super(key: key);
+  var data;
+  String docId;
+  String doctorName;
+  String doctorId;
+  String userOsId;
+  Store _store =Store();
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery
@@ -53,7 +61,7 @@ class VideoCallCardItem extends StatelessWidget {
               ),
               SizedBox(height: height * 0.005,),
               Text(
-                'Ahmed Saad Elsaid',
+                '${data[Constants.userName]}',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -62,7 +70,7 @@ class VideoCallCardItem extends StatelessWidget {
               ),
               SizedBox(height: height * 0.005,),
               Text(
-                '01026272813',
+                '${data[Constants.userOsId]}',
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.grey[600],
@@ -70,15 +78,6 @@ class VideoCallCardItem extends StatelessWidget {
                 ),
               ),
               SizedBox(height: height * 0.005,),
-              Text(
-                'a7md.s3d.2001@gmail.com',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey[600],
-                  fontFamily: 'custom_font',
-                ),
-              ),
-              SizedBox(height: height * 0.01,),
               Container(
                 height: 50,
                 width: double.infinity,
@@ -87,7 +86,37 @@ class VideoCallCardItem extends StatelessWidget {
                   color: Constants.primary_blue_color,
                 ),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) => AlertDialog(
+                        content: Text("Are you sure to confirm this call?"),
+                        actions: [
+                          RaisedButton(
+                            color: Colors.green,
+                            child: Center(
+                              child: Text("Yes"),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                              _sendNotification(userOsId);
+                              _store.verifyCall(context, docId,doctorName,doctorId);
+                            },
+                          ),
+                          RaisedButton(
+                            color: Colors.red,
+                            child: Center(
+                              child: Text("No"),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -112,4 +141,14 @@ class VideoCallCardItem extends StatelessWidget {
       ),
     );
   }
+   _sendNotification(String userOsId) {
+     OneSignal.shared.postNotification(OSCreateNotification(
+       additionalData: {
+         'data': 'Doctor',
+       },
+       subtitle: 'Govet..',
+       playerIds: ['1ea35b78-e560-46ea-b97e-5d8633889605'],
+       content: 'Doctor accept call',
+     ));
+   }
 }
