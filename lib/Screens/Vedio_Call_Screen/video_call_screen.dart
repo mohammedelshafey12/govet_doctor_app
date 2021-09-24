@@ -38,21 +38,21 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
   Widget build(BuildContext context) {
 
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection(Constants.videoCallCollection).where(Constants.isVerify, isEqualTo: false).snapshots(),
-      builder: (context, snapshot) {
-        if(snapshot.hasData){
-          var data = snapshot.data!.docs;
-          return ListView.builder(
-            padding: const EdgeInsets.all(20.0),
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              return VideoCallCardItem(data: data[index],docId: data[index].reference.id,doctorName: doctorName,doctorId: doctorId,userOsId:userOsId);
-            },
-          );
-        }else{
-          return LoadingPage();
+        stream: FirebaseFirestore.instance.collection(Constants.videoCallCollection).where(Constants.isVerify, isEqualTo: false).snapshots(),
+        builder: (context, snapshot) {
+          if(snapshot.hasData){
+            var data = snapshot.data!.docs;
+            return ListView.builder(
+              padding: const EdgeInsets.all(20.0),
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                return VideoCallCardItem(data: data[index],docId: data[index].reference.id,doctorName: doctorName,doctorId: doctorId,userOsId:userOsId);
+              },
+            );
+          }else{
+            return LoadingPage();
+          }
         }
-      }
     );
   }
 }

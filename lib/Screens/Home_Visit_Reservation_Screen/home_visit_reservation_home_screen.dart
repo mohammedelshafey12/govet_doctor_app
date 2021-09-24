@@ -31,7 +31,7 @@ class HomeVisitReservationHomeScreen extends StatelessWidget {
               height: height * 0.1,
             ),
             HomeVisitReservationHomeCardItem(
-              title: 'Your recent history',
+              title: 'Your Recent History',
               icon: Icons.menu_book,
               onTap: () {
                 Constants.navigatorPush(

@@ -26,12 +26,12 @@ class Store {
 
   verifyHomeVisitReservation(
       {
-    context,
-    homeVisitReservationId,
-    doctorId,
-    doctorName,
-    doctorPhone,
-  }) {
+        context,
+        homeVisitReservationId,
+        doctorId,
+        doctorName,
+        doctorPhone,
+      }) {
     showDialog(
       context: context,
       builder: (context) {
@@ -77,10 +77,10 @@ class Store {
 
 
   verifyCall(
-    context,String docId,
+      context,String docId,
       String doctorName,
       String doctorId
-  ) {
+      ) {
     fireStore
         .collection(Constants.videoCallCollection)
         .doc(docId)
