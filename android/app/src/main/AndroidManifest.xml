@@ -2,7 +2,7 @@
     package="com.technospace.govet_doctor_app">
 
    <application
-        android:label="govet_doctor_app"
+        android:label="GoVet Doctor"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
+
 class HomeVisitReservationHomeCardItem extends StatelessWidget {
   const HomeVisitReservationHomeCardItem({
     Key? key,
@@ -23,6 +25,8 @@ class HomeVisitReservationHomeCardItem extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
+          shadowColor: Constants.primary_blue_color.withOpacity(0.5),
+          elevation: 10.0,
           child: InkWell(
             borderRadius: BorderRadius.circular(15.0),
             onTap: () {

@@ -35,7 +35,7 @@ class HomeVisitReservationInfoScreen extends StatelessWidget {
           ),
           HomeVisitReservationInfoCardItem(
             title: 'User Phone',
-            subTitle: '0${reservationData[Constants.userPhone]}',
+            subTitle: '${reservationData[Constants.userPhone]}',
           ),
           HomeVisitReservationInfoCardItem(
             title: 'User Location',

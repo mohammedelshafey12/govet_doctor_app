@@ -8,7 +8,6 @@ import 'package:govet_doctor_app/Widgets/Custom_Drawer/Custom_Drawer.dart';
 import 'package:govet_doctor_app/constants.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
-
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -25,7 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
       uid = userAuth!.uid;
     });
 
-    OneSignal.shared.setNotificationOpenedHandler((openedResult) { var data = openedResult.notification.additionalData![0]['data'];});
+    OneSignal.shared.setNotificationOpenedHandler((openedResult) {
+      var data = openedResult.notification.additionalData![0]['data'];
+    });
     OneSignal.shared.setNotificationWillShowInForegroundHandler((event) {
       var data = event.notification.additionalData![0]["data"];
     });
@@ -44,8 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
         'osUserID': '${state?.userId}',
       });
     });
-     _sendNotification();
+    _sendNotification();
   }
+
   _sendNotification() {
     OneSignal.shared.postNotification(OSCreateNotification(
       additionalData: {
@@ -56,7 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
       content: 'Doctor Mohamed accept call',
     ));
   }
+
   int _selectedItemPosition = 1;
+
   @override
   Widget build(BuildContext context) {
     List<Widget> widgets = [
@@ -75,13 +79,15 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: SnakeNavigationBar.color(
-        elevation: 2,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        shadowColor: Constants.primary_blue_color.withOpacity(0.5),
         padding: const EdgeInsets.all(10.0),
         snakeViewColor: Constants.primary_blue_color,
-        selectedItemColor: Constants.primary_yellow_color,
-        unselectedItemColor: Constants.primary_yellow_color,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Constants.primary_blue_color,
         currentIndex: _selectedItemPosition,
         onTap: (index) => setState(() => _selectedItemPosition = index),
         items: [

@@ -8,6 +8,7 @@ import 'package:govet_doctor_app/Services/store.dart';
 import 'package:govet_doctor_app/Widgets/Auth/auth_custom_button.dart';
 import 'package:govet_doctor_app/Widgets/Auth/auth_custom_header.dart';
 import 'package:govet_doctor_app/Widgets/Auth/auth_custom_text_form_field.dart';
+import 'package:govet_doctor_app/Widgets/Auth/auth_custom_text_form_field_password.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 
@@ -46,101 +47,98 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         body: Form(
           key: _globalKey,
-          child: Center(
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              height: height,
-              width: width,
-              child: ListView(
-                children: [
-                  AuthCustomHeader(
-                    width: width,
-                  ),
-                  AuthCustomTextFormField(
-                    hint: 'Name',
-                    controller: doctorNameController,
-                    keyboardType: TextInputType.text,
-                    icon: Icons.person,
-                  ),
-                  AuthCustomTextFormField(
-                    hint: 'Age',
-                    controller: doctorAgeController,
-                    keyboardType: TextInputType.number,
-                    icon: Icons.cake,
-                  ),
-                  AuthCustomTextFormField(
-                    hint: 'Email',
-                    controller: doctorEmailController,
-                    keyboardType: TextInputType.emailAddress,
-                    icon: Icons.email,
-                  ),
-                  AuthCustomTextFormField(
-                    hint: 'Phone',
-                    controller: doctorPhoneController,
-                    keyboardType: TextInputType.number,
-                    icon: Icons.phone,
-                  ),
-                  AuthCustomTextFormField(
-                    hint: 'Address',
-                    controller: doctorAddressController,
-                    keyboardType: TextInputType.text,
-                    icon: Icons.location_on,
-                  ),
-                  AuthCustomTextFormField(
-                    hint: 'Password',
-                    controller: doctorPasswordController,
-                    keyboardType: TextInputType.visiblePassword,
-                    icon: Icons.lock,
-                    obscureText: true,
-                  ),
-                  AuthCustomButton(
-                    title: 'Sign Up',
-                    onPressed: () async {
-                      final modelHud = Provider.of<ModelHud>(
-                        context,
-                        listen: false,
-                      );
-                      if (_globalKey.currentState!.validate()) {
-                        _globalKey.currentState!.save();
-                        modelHud.isProgressLoading(true);
-                        try {
-                          final authResult =
-                              await _auth.signUpWithEmailAndPassword(
-                            doctorEmailController.text,
-                            doctorPasswordController.text,
-                            context,
-                          );
-                          User? userAuth =
-                              FirebaseAuth.instance.currentUser;
-                          modelHud.isProgressLoading(false);
-                          _store.addDoctor(
-                            Doctor(
-                              doctorId: userAuth!.uid,
-                              doctorName: doctorNameController.text,
-                              doctorAge: doctorAgeController.text,
-                              doctorEmail: doctorEmailController.text,
-                              doctorPhone: doctorPhoneController.text,
-                              doctorAddress: doctorAddressController.text,
-                              doctorIsVerify: false,
-                              doctorImageUrl: null,
-                            ),
-                          );
-                        } on PlatformException catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(
-                              e.message.toString(),
-                              style: TextStyle(fontFamily: 'custom_font'),
-                            ),
-                          ));
-                          modelHud.isProgressLoading(false);
-                        }
-                        modelHud.isProgressLoading(false);
-                      }
-                    },
-                  ),
-                ],
+          child: ListView(
+            padding: const EdgeInsets.all(20.0),
+            children: [
+              AuthCustomHeader(
+                width: width,
               ),
-            ),
+              AuthCustomTextFormFieldText(
+                hint: 'Name',
+                controller: doctorNameController,
+                keyboardType: TextInputType.text,
+                iconData: Icons.person,
+              ),
+              SizedBox(height: height * 0.02),
+              AuthCustomTextFormFieldText(
+                hint: 'Age',
+                controller: doctorAgeController,
+                keyboardType: TextInputType.number,
+                iconData: Icons.cake,
+              ),
+              SizedBox(height: height * 0.02),
+              AuthCustomTextFormFieldText(
+                hint: 'Email',
+                controller: doctorEmailController,
+                keyboardType: TextInputType.emailAddress,
+                iconData: Icons.email,
+              ),
+              SizedBox(height: height * 0.02),
+              AuthCustomTextFormFieldText(
+                hint: 'Phone',
+                controller: doctorPhoneController,
+                keyboardType: TextInputType.number,
+                iconData: Icons.phone,
+              ),
+              SizedBox(height: height * 0.02),
+              AuthCustomTextFormFieldText(
+                hint: 'Address',
+                controller: doctorAddressController,
+                keyboardType: TextInputType.text,
+                iconData: Icons.location_on,
+              ),
+              SizedBox(height: height * 0.02),
+              AuthCustomTextFormFieldPassword(
+                hint: 'Password',
+                controller: doctorPasswordController,
+                iconData: Icons.lock,
+              ),
+              SizedBox(height: height * 0.02),
+              AuthCustomButton(
+                title: 'Sign Up',
+                onTap: () async {
+                  final modelHud = Provider.of<ModelHud>(
+                    context,
+                    listen: false,
+                  );
+                  if (_globalKey.currentState!.validate()) {
+                    _globalKey.currentState!.save();
+                    modelHud.isProgressLoading(true);
+                    try {
+                      final authResult = await _auth.signUpWithEmailAndPassword(
+                        doctorEmailController.text,
+                        doctorPasswordController.text,
+                        context,
+                      );
+                      User? userAuth = FirebaseAuth.instance.currentUser;
+                      modelHud.isProgressLoading(false);
+                      _store.addDoctor(
+                        Doctor(
+                          doctorId: userAuth!.uid,
+                          doctorName: doctorNameController.text,
+                          doctorAge: doctorAgeController.text,
+                          doctorEmail: doctorEmailController.text,
+                          doctorPhone: doctorPhoneController.text,
+                          doctorAddress: doctorAddressController.text,
+                          doctorIsVerify: false,
+                          doctorImageUrl: null,
+                        ),
+                      );
+                    } on PlatformException catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            e.message.toString(),
+                          ),
+                        ),
+                      );
+                      modelHud.isProgressLoading(false);
+                    }
+                    modelHud.isProgressLoading(false);
+                  }
+                },
+              ),
+            ],
           ),
         ),
       ),

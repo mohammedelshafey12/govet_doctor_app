@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../../constants.dart';
 
-class AuthCustomTextFormFieldText extends StatelessWidget {
-  const AuthCustomTextFormFieldText({
+class AuthCustomTextFormFieldPassword extends StatelessWidget {
+  const AuthCustomTextFormFieldPassword({
     Key? key,
     required this.hint,
     required this.controller,
-    required this.keyboardType,
     required this.iconData,
   });
 
   final hint;
   final controller;
   final iconData;
-  final keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +24,12 @@ class AuthCustomTextFormFieldText extends StatelessWidget {
         return null;
       },
       controller: controller,
-      keyboardType: keyboardType,
+      obscureText: true,
+      keyboardType: TextInputType.visiblePassword,
       cursorColor: Constants.primary_blue_color,
-      style: TextStyle(color: Constants.primary_blue_color),
+      style: TextStyle(
+          color: Constants.primary_blue_color
+      ),
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -39,7 +40,7 @@ class AuthCustomTextFormFieldText extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide(
-            color: Colors.white,
+            color:  Colors.white,
           ),
         ),
         border: OutlineInputBorder(
@@ -50,10 +51,12 @@ class AuthCustomTextFormFieldText extends StatelessWidget {
         ),
         filled: true,
         fillColor: Colors.white,
-        hintStyle: TextStyle(color: Constants.primary_blue_color),
         prefixIcon: Icon(
           iconData,
           color: Constants.primary_yellow_color,
+        ),
+        hintStyle: TextStyle(
+            color: Constants.primary_blue_color
         ),
         hintText: hint,
       ),

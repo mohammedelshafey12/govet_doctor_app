@@ -19,6 +19,8 @@ class HomeVisitReservationInfoCardItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
+        elevation: 5.0,
+        shadowColor: Constants.primary_blue_color.withOpacity(0.5),
         child: ListTile(
           leading: Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -24,7 +24,7 @@ class HomeVisitYourReservationCardItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        elevation: 3.0,
+        elevation: 5.0,
         child: ListTile(
           contentPadding:
               const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -56,10 +56,10 @@ class HomeVisitYourReservationCardItem extends StatelessWidget {
               ListTile(
                 contentPadding: const EdgeInsets.all(0.0),
                 title: Container(
-                  height: 50,
+                  height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
-                    color: Constants.primary_yellow_color,
+                    color: Constants.primary_blue_color,
                   ),
                   child: TextButton(
                     onPressed: () {
@@ -74,6 +74,8 @@ class HomeVisitYourReservationCardItem extends StatelessWidget {
                       'Show More Details',
                       style: TextStyle(
                         color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.5,
                       ),
                     ),
                   ),

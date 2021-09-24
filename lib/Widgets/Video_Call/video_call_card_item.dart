@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:govet_doctor_app/Services/store.dart';
-import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import '../../constants.dart';
 
-// ignore: must_be_immutable
 class VideoCallCardItem extends StatelessWidget {
-   VideoCallCardItem({Key? key,this.data,required this.docId,required this.doctorName,required this.doctorId,required this.userOsId}) : super(key: key);
-  var data;
-  String docId;
-  String doctorName;
-  String doctorId;
-  String userOsId;
-  Store _store =Store();
+  const VideoCallCardItem({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery
@@ -29,7 +21,8 @@ class VideoCallCardItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
-        elevation: 3.0,
+        shadowColor: Constants.primary_blue_color.withOpacity(0.5),
+        elevation: 5.0,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -39,8 +32,11 @@ class VideoCallCardItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: Colors.grey[300],
+                  border: Border.all(
+                    color: Constants.primary_blue_color,
+                  ),
                 ),
-                height: height * 0.3,
+                height: height * 0.23,
                 width: double.infinity,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
@@ -51,72 +47,59 @@ class VideoCallCardItem extends StatelessWidget {
                 ),
               ),
               SizedBox(height: height * 0.01,),
-              Text(
-                'Calling Now ...',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Constants.primary_blue_color,
-                  fontFamily: 'custom_font_bold',
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0,),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Calling Now ...',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Constants.primary_blue_color,
+                        fontFamily: 'custom_font_bold',
+                      ),
+                    ),
+                    SizedBox(height: height * 0.008,),
+                    Text(
+                      'Ahmed Saad Elsaid',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(height: height * 0.008,),
+                    Text(
+                      '01026272813',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.grey[600],
+                        fontFamily: 'custom_font',
+                      ),
+                    ),
+                    SizedBox(height: height * 0.008,),
+                    Text(
+                      'a7md.s3d.2001@gmail.com',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.grey[600],
+                        fontFamily: 'custom_font',
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: height * 0.005,),
-              Text(
-                '${data[Constants.userName]}',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              SizedBox(height: height * 0.005,),
-              Text(
-                '${data[Constants.userOsId]}',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey[600],
-                  fontFamily: 'custom_font',
-                ),
-              ),
-              SizedBox(height: height * 0.005,),
+              SizedBox(height: height * 0.01,),
               Container(
-                height: 50,
+                height: 40,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: Constants.primary_blue_color,
                 ),
                 child: TextButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (context) => AlertDialog(
-                        content: Text("Are you sure to confirm this call?"),
-                        actions: [
-                          RaisedButton(
-                            color: Colors.green,
-                            child: Center(
-                              child: Text("Yes"),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                              _sendNotification(userOsId);
-                              _store.verifyCall(context, docId,doctorName,doctorId);
-                            },
-                          ),
-                          RaisedButton(
-                            color: Colors.red,
-                            child: Center(
-                              child: Text("No"),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                  onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -141,14 +124,4 @@ class VideoCallCardItem extends StatelessWidget {
       ),
     );
   }
-   _sendNotification(String userOsId) {
-     OneSignal.shared.postNotification(OSCreateNotification(
-       additionalData: {
-         'data': 'Doctor',
-       },
-       subtitle: 'Govet..',
-       playerIds: ['1ea35b78-e560-46ea-b97e-5d8633889605'],
-       content: 'Doctor accept call',
-     ));
-   }
 }

@@ -34,10 +34,11 @@ class HomeVisitReservationCardItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        elevation: 3.0,
+        elevation: 5.0,
+        shadowColor:  Constants.primary_blue_color.withOpacity(0.5),
         child: ListTile(
           contentPadding:
-              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0,),
           title: Column(
             children: [
               HomeVisitReservationListTileItem(
@@ -48,7 +49,7 @@ class HomeVisitReservationCardItem extends StatelessWidget {
               HomeVisitReservationListTileItem(
                 title: 'User Phone',
                 subTitle:
-                    '0${homeVisitReservationData[index][Constants.userPhone]}',
+                    '${homeVisitReservationData[index][Constants.userPhone]}',
                 icon: Icons.phone,
               ),
               HomeVisitReservationListTileItem(
@@ -69,7 +70,7 @@ class HomeVisitReservationCardItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Container(
-                        height: 50,
+                        height: 40,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
                           color: Constants.primary_blue_color,
@@ -144,6 +145,8 @@ class HomeVisitReservationCardItem extends StatelessWidget {
                             'Accept',
                             style: TextStyle(
                               color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0.5,
                             ),
                           ),
                         ),
@@ -154,10 +157,13 @@ class HomeVisitReservationCardItem extends StatelessWidget {
                     ),
                     Expanded(
                       child: Container(
-                        height: 50,
+                        height: 40,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
-                          color: Constants.primary_yellow_color,
+                          // color: Colors.white,
+                          border: Border.all(
+                            color: Constants.primary_blue_color,
+                          )
                         ),
                         child: TextButton(
                           onPressed: () {
@@ -171,7 +177,9 @@ class HomeVisitReservationCardItem extends StatelessWidget {
                           child: Text(
                             'Show More Details',
                             style: TextStyle(
-                              color: Colors.white,
+                              color:Constants.primary_blue_color,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0.5,
                             ),
                           ),
                         ),

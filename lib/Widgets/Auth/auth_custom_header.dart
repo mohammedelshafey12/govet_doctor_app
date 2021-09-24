@@ -11,7 +11,7 @@ class AuthCustomHeader extends StatelessWidget {
       padding:
       const EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       child: Container(
-        width: width * 0.2,
+        // width: width * 0.2,
         child: Image.asset(
           Constants.logInLogo,
           fit: BoxFit.cover,
