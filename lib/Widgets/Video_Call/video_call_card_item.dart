@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:govet_doctor_app/Services/store.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants.dart';
 
 // ignore: must_be_immutable
 class VideoCallCardItem extends StatelessWidget {
-  VideoCallCardItem({Key? key,this.data,required this.docId,required this.doctorName,required this.doctorId,required this.userOsId}) : super(key: key);
+  VideoCallCardItem({Key? key,this.data,required this.docId,required this.doctorName,required this.doctorId,required this.userOsId,required this.doctorZoomLink}) : super(key: key);
   var data;
   String docId;
   String doctorName;
   String doctorId;
+  String doctorZoomLink;
   String userOsId;
   Store _store =Store();
   @override
@@ -100,8 +102,9 @@ class VideoCallCardItem extends StatelessWidget {
                             ),
                             onPressed: () {
                               Navigator.pop(context);
-                              _sendNotification(userOsId);
-                              _store.verifyCall(context, docId,doctorName,doctorId);
+                              // _sendNotification(userOsId);
+                              _store.verifyCall(context, docId,doctorName,doctorId,doctorZoomLink);
+
                             },
                           ),
                           RaisedButton(
@@ -151,4 +154,11 @@ class VideoCallCardItem extends StatelessWidget {
       content: 'Doctor accept call',
     ));
   }
+// _launchURL(String url) async {
+//   if (await canLaunch(url)) {
+//     await launch(url);
+//   } else {
+//     throw 'Could not launch $url';
+//   }
+// }
 }

@@ -17,6 +17,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
   String doctorName='';
   String doctorId='';
   String userOsId='';
+  String doctorZoomLink='';
   @override
   void initState() {
     // TODO: implement initState
@@ -30,13 +31,14 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
       setState(() {
         doctorName = value.docs[0][Constants.doctorName];
         doctorId = value.docs[0][Constants.doctorId];
-        userOsId = value.docs[0][Constants.userOsId];
+        // userOsId = value.docs[0][Constants.userOsId];
+        doctorZoomLink = value.docs[0][Constants.doctorZoomLink];
       });
+      print (value.docs[0][Constants.doctorZoomLink]);
     });
   }
   @override
   Widget build(BuildContext context) {
-
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection(Constants.videoCallCollection).where(Constants.isVerify, isEqualTo: false).snapshots(),
         builder: (context, snapshot) {
@@ -46,7 +48,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
               padding: const EdgeInsets.all(20.0),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
-                return VideoCallCardItem(data: data[index],docId: data[index].reference.id,doctorName: doctorName,doctorId: doctorId,userOsId:userOsId);
+                return VideoCallCardItem(data: data[index],docId: data[index].reference.id,doctorName: doctorName,doctorId: doctorId,userOsId:userOsId,doctorZoomLink: doctorZoomLink,);
               },
             );
           }else{

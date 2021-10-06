@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:govet_doctor_app/Models/doctor_model.dart';
 import 'package:govet_doctor_app/Screens/Home_Screen/home_screen.dart';
 import 'package:govet_doctor_app/Screens/Vedio_Call_Screen/callAccepted.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../constants.dart';
 
@@ -20,6 +21,7 @@ class Store {
       Constants.doctorAddress: doctor.doctorAddress,
       Constants.doctorImageUrl: doctor.doctorImageUrl,
       Constants.doctorIsVerify: doctor.doctorIsVerify,
+      Constants.doctorZoomLink: doctor.doctorZoomLink,
     });
   }
 
@@ -76,10 +78,11 @@ class Store {
   }
 
 
-  verifyCall(
+  verifyCall  (
       context,String docId,
       String doctorName,
-      String doctorId
+      String doctorId,
+      String doctorZoomLink
       ) {
     fireStore
         .collection(Constants.videoCallCollection)
@@ -87,9 +90,15 @@ class Store {
         .update({
       Constants.isVerify: true,
       Constants.doctorName:doctorName,
-      Constants.doctorId:doctorId
+      Constants.doctorId:doctorId,
+      Constants.doctorZoomLink:doctorZoomLink
     }).then((value) {
-    }).whenComplete(() {
+    }).whenComplete(() async{
+      if (await canLaunch(doctorZoomLink)) {
+        await launch(doctorZoomLink);
+      } else {
+        throw 'Could not launch $doctorZoomLink';
+      }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -99,10 +108,6 @@ class Store {
         ),
       );
     });
-    Constants.navigatorPush(
-      context: context,
-      screen: CallAccepted(),
-    );
 
   }
 }

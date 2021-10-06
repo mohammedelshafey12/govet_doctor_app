@@ -33,6 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController doctorEmailController = TextEditingController();
   TextEditingController doctorAddressController = TextEditingController();
   TextEditingController doctorPasswordController = TextEditingController();
+  TextEditingController doctorZoomController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,98 +48,115 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         body: Form(
           key: _globalKey,
-          child: ListView(
-            padding: const EdgeInsets.all(20.0),
-            children: [
-              AuthCustomHeader(
-                width: width,
-              ),
-              AuthCustomTextFormFieldText(
-                hint: 'Name',
-                controller: doctorNameController,
-                keyboardType: TextInputType.text,
-                iconData: Icons.person,
-              ),
-              SizedBox(height: height * 0.02),
-              AuthCustomTextFormFieldText(
-                hint: 'Age',
-                controller: doctorAgeController,
-                keyboardType: TextInputType.number,
-                iconData: Icons.cake,
-              ),
-              SizedBox(height: height * 0.02),
-              AuthCustomTextFormFieldText(
-                hint: 'Email',
-                controller: doctorEmailController,
-                keyboardType: TextInputType.emailAddress,
-                iconData: Icons.email,
-              ),
-              SizedBox(height: height * 0.02),
-              AuthCustomTextFormFieldText(
-                hint: 'Phone',
-                controller: doctorPhoneController,
-                keyboardType: TextInputType.number,
-                iconData: Icons.phone,
-              ),
-              SizedBox(height: height * 0.02),
-              AuthCustomTextFormFieldText(
-                hint: 'Address',
-                controller: doctorAddressController,
-                keyboardType: TextInputType.text,
-                iconData: Icons.location_on,
-              ),
-              SizedBox(height: height * 0.02),
-              AuthCustomTextFormFieldPassword(
-                hint: 'Password',
-                controller: doctorPasswordController,
-                iconData: Icons.lock,
-              ),
-              SizedBox(height: height * 0.02),
-              AuthCustomButton(
-                title: 'Sign Up',
-                onTap: () async {
-                  final modelHud = Provider.of<ModelHud>(
-                    context,
-                    listen: false,
-                  );
-                  if (_globalKey.currentState!.validate()) {
-                    _globalKey.currentState!.save();
-                    modelHud.isProgressLoading(true);
-                    try {
-                      final authResult = await _auth.signUpWithEmailAndPassword(
-                        doctorEmailController.text,
-                        doctorPasswordController.text,
+          child: Center(
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              height: height,
+              width: width,
+              child: ListView(
+                children: [
+                  AuthCustomHeader(
+                    width: width,
+                  ),
+                  AuthCustomTextFormFieldText(
+                    hint: 'Name',
+                    controller: doctorNameController,
+                    keyboardType: TextInputType.text,
+                    iconData: Icons.person,
+                  ),
+                  SizedBox(height: 20.0,),
+                  AuthCustomTextFormFieldText(
+                    hint: 'Age',
+                    controller: doctorAgeController,
+                    keyboardType: TextInputType.number,
+                    iconData: Icons.cake,
+                  ),
+                  SizedBox(height: 20.0,),
+                  AuthCustomTextFormFieldText(
+                    hint: 'Email',
+                    controller: doctorEmailController,
+                    keyboardType: TextInputType.emailAddress,
+                    iconData: Icons.email,
+                  ),
+                  SizedBox(height: 20.0,),
+                  AuthCustomTextFormFieldText(
+                    hint: 'Phone',
+                    controller: doctorPhoneController,
+                    keyboardType: TextInputType.number,
+                    iconData: Icons.phone,
+                  ),
+                  SizedBox(height: 20.0,),
+                  AuthCustomTextFormFieldText(
+                    hint: 'Address',
+                    controller: doctorAddressController,
+                    keyboardType: TextInputType.text,
+                    iconData: Icons.location_on,
+                  ),
+                  SizedBox(height: 20.0,),
+                  AuthCustomTextFormFieldPassword(
+                    hint: 'Password',
+                    controller: doctorPasswordController,
+                    iconData: Icons.lock,
+
+                  ),
+                  SizedBox(height: 20.0,),
+                  AuthCustomTextFormFieldText(
+                    hint: 'Zoom Link',
+                    controller: doctorZoomController,
+                    keyboardType: TextInputType.text,
+                    iconData: Icons.link,
+
+                  ),
+                  SizedBox(height: 20.0,),
+                  AuthCustomButton(
+                    title: 'Sign Up',
+                    onTap: () async {
+                      final modelHud = Provider.of<ModelHud>(
                         context,
+                        listen: false,
                       );
-                      User? userAuth = FirebaseAuth.instance.currentUser;
-                      modelHud.isProgressLoading(false);
-                      _store.addDoctor(
-                        Doctor(
-                          doctorId: userAuth!.uid,
-                          doctorName: doctorNameController.text,
-                          doctorAge: doctorAgeController.text,
-                          doctorEmail: doctorEmailController.text,
-                          doctorPhone: doctorPhoneController.text,
-                          doctorAddress: doctorAddressController.text,
-                          doctorIsVerify: false,
-                          doctorImageUrl: null,
-                        ),
-                      );
-                    } on PlatformException catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            e.message.toString(),
-                          ),
-                        ),
-                      );
-                      modelHud.isProgressLoading(false);
-                    }
-                    modelHud.isProgressLoading(false);
-                  }
-                },
+                      if (_globalKey.currentState!.validate()) {
+                        _globalKey.currentState!.save();
+                        modelHud.isProgressLoading(true);
+                        try {
+                          final authResult =
+                          await _auth.signUpWithEmailAndPassword(
+                            doctorEmailController.text,
+                            doctorPasswordController.text,
+                            context,
+                          );
+                          User? userAuth =
+                              FirebaseAuth.instance.currentUser;
+                          modelHud.isProgressLoading(false);
+                          _store.addDoctor(
+                            Doctor(
+                              doctorId: userAuth!.uid,
+                              doctorName: doctorNameController.text,
+                              doctorAge: doctorAgeController.text,
+                              doctorEmail: doctorEmailController.text,
+                              doctorPhone: doctorPhoneController.text,
+                              doctorAddress: doctorAddressController.text,
+                              doctorZoomLink: doctorZoomController.text,
+                              doctorIsVerify: false,
+                              doctorImageUrl: null,
+                            ),
+                          );
+                        } on PlatformException catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                              e.message.toString(),
+                              style: TextStyle(fontFamily: 'custom_font'),
+                            ),
+                          ));
+                          modelHud.isProgressLoading(false);
+                        }
+                        modelHud.isProgressLoading(false);
+                      }
+                    },
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

@@ -7,6 +7,7 @@ class Doctor {
   final doctorAddress;
   final doctorImageUrl;
   final doctorIsVerify;
+  final doctorZoomLink;
 
   Doctor({
     required this.doctorId,
@@ -16,6 +17,7 @@ class Doctor {
     required this.doctorEmail,
     required this.doctorAddress,
     required this.doctorImageUrl,
+    required this.doctorZoomLink,
     required this.doctorIsVerify,
   });
 }

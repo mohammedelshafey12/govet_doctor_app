@@ -56,6 +56,7 @@ class Constants {
   static const String doctorAddress = 'DoctorAddress';
   static const String doctorImageUrl = 'DoctorImageUrl';
   static const String doctorIsVerify = 'DoctorIsVerify';
+  static const String doctorZoomLink = 'DoctorZoomLink';
 
   /// constants app colors
   static const Color primary_blue_color = Color(0xfff25265E);
