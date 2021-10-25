@@ -1,30 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:govet_doctor_app/Services/store.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants.dart';
 
 // ignore: must_be_immutable
 class VideoCallCardItem extends StatelessWidget {
-  VideoCallCardItem({Key? key,this.data,required this.docId,required this.doctorName,required this.doctorId,required this.userOsId,required this.doctorZoomLink}) : super(key: key);
+  VideoCallCardItem({
+    Key? key,
+    this.data,
+    required this.docId,
+    required this.doctorName,
+    required this.doctorId,
+    required this.userOsId,
+    required this.doctorZoomLink,
+  }) : super(key: key);
   var data;
   String docId;
   String doctorName;
   String doctorId;
   String doctorZoomLink;
   String userOsId;
-  Store _store =Store();
+  Store _store = Store();
+
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Card(
@@ -52,7 +56,9 @@ class VideoCallCardItem extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.01,),
+              SizedBox(
+                height: height * 0.01,
+              ),
               Text(
                 'Calling Now ...',
                 style: TextStyle(
@@ -61,7 +67,9 @@ class VideoCallCardItem extends StatelessWidget {
                   fontFamily: 'custom_font_bold',
                 ),
               ),
-              SizedBox(height: height * 0.005,),
+              SizedBox(
+                height: height * 0.005,
+              ),
               Text(
                 '${data[Constants.userName]}',
                 style: TextStyle(
@@ -70,7 +78,9 @@ class VideoCallCardItem extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(height: height * 0.005,),
+              SizedBox(
+                height: height * 0.005,
+              ),
               Text(
                 '${data[Constants.userOsId]}',
                 style: TextStyle(
@@ -79,7 +89,9 @@ class VideoCallCardItem extends StatelessWidget {
                   fontFamily: 'custom_font',
                 ),
               ),
-              SizedBox(height: height * 0.005,),
+              SizedBox(
+                height: height * 0.005,
+              ),
               Container(
                 height: 50,
                 width: double.infinity,
@@ -103,8 +115,10 @@ class VideoCallCardItem extends StatelessWidget {
                             onPressed: () {
                               Navigator.pop(context);
                               // _sendNotification(userOsId);
-                              _store.verifyCall(context, docId,doctorName,doctorId,doctorZoomLink);
-
+                              _store.verifyCall(context, docId, doctorName,
+                                  doctorId, doctorZoomLink);
+                              _launchURL(doctorZoomLink);
+                              print(doctorZoomLink);
                             },
                           ),
                           RaisedButton(
@@ -124,7 +138,7 @@ class VideoCallCardItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.phone, color: Colors.white),
-                      SizedBox(width: width *0.03),
+                      SizedBox(width: width * 0.03),
                       Text(
                         'Accept Call',
                         style: TextStyle(
@@ -144,6 +158,7 @@ class VideoCallCardItem extends StatelessWidget {
       ),
     );
   }
+
   _sendNotification(String userOsId) {
     OneSignal.shared.postNotification(OSCreateNotification(
       additionalData: {
@@ -154,11 +169,12 @@ class VideoCallCardItem extends StatelessWidget {
       content: 'Doctor accept call',
     ));
   }
-// _launchURL(String url) async {
-//   if (await canLaunch(url)) {
-//     await launch(url);
-//   } else {
-//     throw 'Could not launch $url';
-//   }
-// }
+
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }
